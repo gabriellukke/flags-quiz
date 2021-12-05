@@ -1,13 +1,18 @@
-import { createContext, useState } from 'react';
+import { createContext, useEffect, useState } from 'react';
+import { getAllCountries } from '../services';
 
 export const CountriesContext = createContext();
 
 export const CountriesProvider = ({ children }) => {
-  const [countries, setCountries] = useState([]);
+  const [allCountries, setAllCountries] = useState([]);
+
+  useEffect(async () => {
+    const countries = await getAllCountries();
+    setAllCountries(countries);
+  }, [])
 
   const state = {
-    countries,
-    setCountries,
+    allCountries,
   }
 
   return (

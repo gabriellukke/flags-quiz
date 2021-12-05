@@ -7,8 +7,8 @@ const api = axios.create({
 
 export const getAllCountries = async () => {
   try {
-    const result = await api.get('all');
-    return result;
+    const { data } = await api.get('all');
+    return data;
   } catch (err) {
     return err.response;
   }
